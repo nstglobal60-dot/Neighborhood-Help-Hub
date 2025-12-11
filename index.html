@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Neighborly — Neighborhood Help Hub</title>
+  <meta name="description" content="Find or offer small neighborhood help: borrow tools, request errands, barter skills, and get local micro-jobs done.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>Neighborly</h1>
+        <div class="sub">Micro-help for real neighbourhood problems — borrow, share, hire, or barter.</div>
+      </div>
+      <div class="small">Offline-ready demo • Local storage • No signup</div>
+    </header>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search: e.g. lawn, ride, babysit, drill" />
+      <div class="switch" role="tablist" aria-label="view switch">
+        <button id="view-requests" class="active">Requests</button>
+        <button id="view-offers">Offers</button>
+      </div>
+      <button id="create" title="Create request or offering">+ New</button>
+      <button id="voice" class="ghost" title="Use voice to create a request">🎤 Voice</button>
+    </div>
+
+    <div class="grid">
+      <main>
+        <div class="card">
+          <div class="card-header">
+            <div><strong id="result-count">0</strong> results</div>
+            <div class="filters">
+              <select id="category">
+                <option value="all">All categories</option>
+                <option>Errand</option>
+                <option>Tool</option>
+                <option>Childcare</option>
+                <option>Transport</option>
+                <option>Skill</option>
+              </select>
+              <select id="sort">
+                <option value="newest">Newest</option>
+                <option value="distance">Closest</option>
+                <option value="rating">Top rated</option>
+              </select>
+            </div>
+          </div>
+          <div id="list" class="list"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Live Match</strong>
+            <span class="small">Automatic local matching</span>
+          </div>
+          <div id="match" class="map-placeholder">No matches yet — create a request to see matches here.</div>
+        </div>
+      </main>
+
+      <aside class="side">
+        <div class="card profile-card">
+          <div class="profile">
+            <div class="avatar" id="userAvatar">N</div>
+            <div>
+              <div class="profile-name">You (Local)</div>
+              <div class="small">Location: <span id="loc">unknown</span></div>
+            </div>
+          </div>
+          <div class="cta">
+            <button id="my-requests" class="ghost">My posts</button>
+            <button id="nearby" class="ghost">Find nearby</button>
+          </div>
+          <hr>
+          <div class="safety-rating">
+            <div>
+              <div class="small">Safety tip</div>
+              <div class="sub">Meet in public places, review ratings, and exchange contact details in-app.</div>
+            </div>
+            <div class="rating"><span class="pill">4.8</span><div class="small">community</div></div>
+          </div>
+        </div>
+
+        <div class="card quick-post">
+          <strong>Create Quick Post</strong>
+          <input id="quick-title" placeholder="What do you need?" class="input-full" />
+          <div class="quick-actions">
+            <select id="quick-cat">
+              <option>Errand</option>
+              <option>Tool</option>
+              <option>Skill</option>
+              <option>Transport</option>
+            </select>
+            <button id="quick-create">Request</button>
+          </div>
+          <div class="small tip">Tip: use voice button to quickly describe the request.</div>
+        </div>
+
+        <div class="card activity-card">
+          <strong>Activity</strong>
+          <div class="chat" id="activity"></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Built for demo — can be extended with real authentication, payment, and mapping APIs.
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal card">
+      <div class="card-header">
+        <h3>Create a new post</h3>
+        <button id="close-modal" class="ghost">Close</button>
+      </div>
+      <div class="modal-body">
+        <input id="post-title" placeholder="Short title (e.g. Need a drill)" class="input-full" />
+        <div class="form-row">
+          <select id="post-type"><option>Request</option><option>Offer</option></select>
+          <select id="post-cat">
+            <option>Tool</option><option>Errand</option><option>Childcare</option><option>Transport</option><option>Skill</option>
+          </select>
+        </div>
+        <textarea id="post-desc" placeholder="Describe what you need or offer. Add price or timeframe if relevant."></textarea>
+        <div class="modal-actions">
+          <button id="save-post">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
